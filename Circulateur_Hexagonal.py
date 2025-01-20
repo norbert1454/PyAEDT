@@ -153,7 +153,7 @@ script_path = Path(__file__).resolve()
             # Pour obtenir le dossier dans lequel est le script
 script_dir = script_path.parent
 Nzm_Chen_path = script_dir / Nzm_Chen_filename
-Circulateur["Nzm_Chen"] = Circulateur.import_dataset1d(input_file = Nzm_Chen_path, is_project_dataset = False)
+Circulateur["Nzm_Chen"] = Circulateur.import_dataset1d(input_file = str(Nzm_Chen_path), is_project_dataset = False)
 Circulateur["gamma_Chen"] = "hauteur_ferrite/(2*rayon_ferrite)"
 Circulateur["Nz"] = "pwl(Nzm_Chen,gamma_Chen)"
         # Champ interne
