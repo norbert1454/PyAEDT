@@ -1,0 +1,127 @@
+$begin '$base_index$'
+  $begin 'properties'
+    all_levels=000000000000
+    time(year=000000002025, month=000000000001, day=000000000017, hour=000000000015, min=000000000047, sec=000000000023)
+    version=000000000000
+  $end 'properties'
+  $begin '$base_index$'
+    $index$(pos=000000006091, lin=000000000105, lvl=000000000000)
+  $end '$base_index$'
+$end '$base_index$'
+$begin 'SolutionBlock1'
+	ProductName=''
+	CircuitName='Circulateur'
+	VersionID=113
+	PostProcess=false
+	LossLess=true
+	NextUniqueID=181
+	MoveBackwards=false
+	$begin 'VariationIDs'
+		Map(V='', ID=3)
+		Map(V='$dielectrique_epsilon=\'21\' $dielectrique_tand=\'0.0030000000000000001\' $ferrite_delta_H=\'200Oe\' $ferrite_epsilon=\'20\' $ferrite_freq_delta_H=\'40GHz\' $ferrite_Mr=\'3500gauss\' $ferrite_tand=\'0.0050000000000000001\' epaisseur_metallisation=\'4um\' epaisseur_pec=\'10um\' gamma_Chen=\'0.16000000000000003\' hauteur_ferrite=\'352um\' hauteur_port=\'1056um\' hauteur_substrat=\'352um\' Hint=\'11473.35\' Hint_apm=\'913020.18316169875\' Hk=\'14000\' largeur_50_Ohm=\'115um\' largeur_adaptation=\'720um\' largeur_port=\'2300um\' longueur_50_Ohm_min=\'1000.0000000000001um\' longueur_adaptation=\'1600um\' longueur_substrat=\'3700um\' Mr=\'3500\' Nz=\'0.72189999999999999\' rayon_ferrite=\'1100um\' rayon_jonction=\'1100um\'', ID=12)
+		Map(V='$dielectrique_epsilon=\'21\' $dielectrique_tand=\'0.0030000000000000001\' $ferrite_delta_H=\'200Oe\' $ferrite_epsilon=\'20\' $ferrite_freq_delta_H=\'40GHz\' $ferrite_Mr=\'3500gauss\' $ferrite_tand=\'0.0050000000000000001\' epaisseur_metallisation=\'4um\' hauteur_ferrite=\'352um\' hauteur_substrat=\'352um\' Hk=\'14000\' largeur_50_Ohm=\'115um\' largeur_adaptation=\'720um\' longueur_50_Ohm_min=\'1000.0000000000001um\' longueur_adaptation=\'1600um\' longueur_substrat=\'3700um\' Mr=\'3500\' rayon_ferrite=\'1100um\' rayon_jonction=\'1100um\'', ID=7)
+	$end 'VariationIDs'
+	$begin 'LinkedDataList'
+	$end 'LinkedDataList'
+	MeshAssemVersionID=50
+	$begin 'NextAssemVersionID'
+		NextUniqueID=51
+		MoveBackwards=false
+	$end 'NextAssemVersionID'
+	$begin 'MI'
+	$end 'MI'
+	VersionID2=114
+$end 'SolutionBlock1'
+$begin 'BlockMapName'
+	FileHeader='SolutionBlock1'
+	'SolutionKey(SimSetup=0, Instance=\'SetupDefinition\', Solution=-1, VersionID=113)'='SolutionBlock7'
+	'SolutionKey(SimSetup=0, Instance=\'SolutionDefinition\', Solution=1, VersionID=113)'='SolutionBlock4'
+	'SolutionKey(SimSetup=0, Instance=\'SolutionDefinition\', Solution=111, VersionID=113)'='SolutionBlock6'
+	'SolutionKey(SimSetup=0, Instance=\'SolutionDefinition\', Solution=2, VersionID=115)'='SolutionBlock5'
+$end 'BlockMapName'
+$begin 'SolutionBlock4'
+	SolutionName='AdaptivePass'
+	SolutionID=1
+	V=113
+	$begin 'States'
+	$end 'States'
+	$begin 'Definition'
+		SamplingInterpolation=false
+		Frequencies(24000000000)
+		SolutionType=6
+		CenterFreq=0
+	$end 'Definition'
+	IsImported=false
+	IsTable=false
+	IsMatrixDataTable=false
+	SweepID=-1
+	KeepAllFastSweepFields=false
+$end 'SolutionBlock4'
+$begin 'SolutionBlock5'
+	SolutionName='LastAdaptive'
+	SolutionID=2
+	V=115
+	$begin 'States'
+	$end 'States'
+	$begin 'Definition'
+		SamplingInterpolation=false
+		Frequencies(24000000000)
+		SolutionType=6
+		CenterFreq=0
+	$end 'Definition'
+	IsImported=false
+	IsTable=false
+	IsMatrixDataTable=false
+	SweepID=-1
+	KeepAllFastSweepFields=false
+$end 'SolutionBlock5'
+$begin 'SolutionBlock6'
+	SolutionName='Sweep'
+	SolutionID=111
+	V=113
+	$begin 'States'
+	$end 'States'
+	$begin 'Definition'
+		SamplingInterpolation=false
+		Frequencies(20000000000, 20050000000, 20100000000, 20150000000, 20200000000, 20250000000, 20300000000, 20350000000, 20400000000, 20450000000, 20500000000, 20550000000, 20600000000, 20650000000, 20700000000, 20750000000, 20800000000, 20850000000, 20900000000, 20950000000, 21000000000, 21050000000, 21100000000, 21150000000, 21200000000, 21250000000, 21300000000, 21350000000, 21400000000, 21450000000, 21500000000, 21550000000, 21600000000, 21650000000, 21700000000, 21750000000, 21800000000, 21850000000, 21900000000, 21950000000, 22000000000, 22050000000, 22100000000, 22150000000, 22200000000, 22250000000, 22300000000, 22350000000, 22400000000, 22450000000, 22500000000, 22550000000, 22600000000, 22650000000, 22700000000, 22750000000, 22800000000, 22850000000, 22900000000, 22950000000, 23000000000, 23050000000, 23100000000, 23150000000, 23200000000, 23250000000, 23300000000, 23350000000, 23400000000, 23450000000, 23500000000, 23550000000, 23600000000, 23650000000, 23700000000, 23750000000, 23800000000, 23850000000, 23900000000, 23950000000, 24000000000, 24050000000, 24100000000, 24150000000, 24200000000, 24250000000, 24300000000, 24350000000, 24400000000, 24450000000, 24500000000, 24550000000, 24600000000, 24650000000, 24700000000, 24750000000, 24800000000, 24850000000, 24900000000, 24950000000, 25000000000, 25050000000, 25100000000, 25150000000, 25200000000, 25250000000, 25300000000, 25350000000, 25400000000, 25450000000, 25500000000, 25550000000, 25600000000, 25650000000, 25700000000, 25750000000, 25800000000, 25850000000, 25900000000, 25950000000, 26000000000, 26050000000, 26100000000, 26150000000, 26200000000, 26250000000, 26300000000, 26350000000, 26400000000, 26450000000, 26500000000, 26550000000, 26600000000, 26650000000, 26700000000, 26750000000, 26800000000, 26850000000, 26900000000, 26950000000, 27000000000, 27050000000, 27100000000, 27150000000, 27200000000, 27250000000, 27300000000, 27350000000, 27400000000, 27450000000, 27500000000, 27550000000, 27600000000, 27650000000, 27700000000, 27750000000, 27800000000, 27850000000, 27900000000, 27950000000, 28000000000)
+		SolutionType=5
+		CenterFreq=0
+	$end 'Definition'
+	IsImported=false
+	IsTable=false
+	IsMatrixDataTable=false
+	SweepID=0
+	KeepAllFastSweepFields=false
+$end 'SolutionBlock6'
+$begin 'SolutionBlock7'
+	SimSetupID=0
+	SimSetupName='Setup'
+	VersionID=113
+	IsImported=false
+	IsTable=false
+	SolveSetupID=0
+	MeshAssemVersionID=53
+	$begin 'NextAssemVersionID'
+		NextUniqueID=54
+		MoveBackwards=false
+	$end 'NextAssemVersionID'
+	$begin 'ADP'
+	$end 'ADP'
+	$begin 'SU'
+	$end 'SU'
+	$begin 'MI'
+	$end 'MI'
+$end 'SolutionBlock7'
+$begin '$index$'
+	$begin '$index$'
+		SolutionBlock4(pos=2607, lin=32, lvl=0)
+		SolutionBlock5(pos=2964, lin=50, lvl=0)
+		SolutionBlock6(pos=3321, lin=68, lvl=0)
+		SolutionBlock7(pos=5752, lin=86, lvl=0)
+		SolutionBlock1(pos=370, lin=1, lvl=0)
+		BlockMapName(pos=2120, lin=25, lvl=0)
+		$base_index$(pos=0, lin=1, lvl=0)
+		$index$(pos=6091, lin=105, lvl=0)
+	$end '$index$'
+$end '$index$'
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            

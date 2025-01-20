@@ -1,0 +1,71 @@
+$begin 'InterrogationCache'
+	Version=1
+	$begin 'ValidationStatus'
+		$begin 'Options'
+			EntityCheckLevel='Strict'
+			IgnoreUnclassifiedObjects=false
+			SkipIntersectionChecks=false
+		$end 'Options'
+		Status=false
+	$end 'ValidationStatus'
+	$begin 'BodyCaches'
+		$begin '6'
+			$begin 'BoundingBox'
+				Low[3: -3.7000000000000006, -4.2723919920032296, -0.0040000000000000001]
+				High[3: 3.7000000000000006, 4.2723919920032296, 0]
+				Exact=true
+				Valid=true
+			$end 'BoundingBox'
+		$end '6'
+		$begin '47'
+			$begin 'BoundingBox'
+				Low[3: -3.6999999999999984, -4.2723919920032296, 0]
+				High[3: 3.6999999999999997, 4.2723919920032296, 0.35199999999999998]
+				Exact=true
+				Valid=true
+			$end 'BoundingBox'
+		$end '47'
+		$begin '88'
+			$begin 'BoundingBox'
+				Low[3: -1.0999999999999999, -1.0999999999999999, 0]
+				High[3: 1.0999999999999999, 1.0999999999999999, 0.35199999999999998]
+				Exact=true
+				Valid=true
+			$end 'BoundingBox'
+		$end '88'
+		$begin '109'
+			$begin 'BoundingBox'
+				Low[3: -1.8997964607176043, -3.233043994002422, 0.35199999999999998]
+				High[3: 3.6999999999999997, 3.2330439940024234, 0.35599999999999998]
+				Exact=true
+				Valid=true
+			$end 'BoundingBox'
+		$end '109'
+		$begin '336'
+			$begin 'BoundingBox'
+				Low[3: 3.6999999999999997, -1.1499999999999999, 0]
+				High[3: 3.71, 1.1499999999999999, 1.0559999999999998]
+				Exact=true
+				Valid=true
+			$end 'BoundingBox'
+		$end '336'
+		$begin '364'
+			$begin 'BoundingBox'
+				Low[3: -2.8509292143521039, 2.6292939940024236, 0]
+				High[3: -0.85407078564789451, 3.7879542480402679, 1.0559999999999998]
+				Exact=true
+				Valid=true
+			$end 'BoundingBox'
+		$end '364'
+		$begin '393'
+			$begin 'BoundingBox'
+				Low[3: -2.8509292143521057, -3.7879542480402679, 0]
+				High[3: -0.85407078564789762, -2.6292939940024214, 1.0559999999999998]
+				Exact=true
+				Valid=true
+			$end 'BoundingBox'
+		$end '393'
+	$end 'BodyCaches'
+	$begin 'IntersectionCaches'
+	$end 'IntersectionCaches'
+$end 'InterrogationCache'
