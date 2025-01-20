@@ -67,11 +67,11 @@ largeur_taper = "100um"
 # Dimensions de la jonction Y
 epaisseur_metallisation = "4um"
 rayon_jonction = "950um"
-longueur_adaptation = "600um"
+longueur_adaptation = "500um"
 largeur_adaptation = "48um"
 largeur_50_Ohm = "48um"
 rayon_courbure = "500um"
-ecartement_ports = "1.6mm"
+ecartement_ports = "3mm"
 
 # Dimensions du ferrite
 rayon_ferrite = rayon_jonction
@@ -166,12 +166,12 @@ Circulateur["ecartement_ports"] = ecartement_ports
 Circulateur["rayon_courbure"]  = rayon_courbure
 Circulateur["rayon_courbure_2"]  = "rayon_courbure"
 Circulateur["rayon_courbure_3"]  = "rayon_courbure"
-Circulateur["longueur_50_Ohm_avant_courbe_2"] = "(-ecartement_ports/2-(rayon_jonction+longueur_adaptation_2)*sin(60deg)-rayon_courbure_2*(1-cos(60deg)))/sin(60deg)"
-Circulateur["longueur_50_Ohm_avant_courbe_3"] = "(-ecartement_ports/2-(rayon_jonction+longueur_adaptation_3)*sin(60deg)-rayon_courbure_3*(1-cos(60deg)))/sin(60deg)"
+Circulateur["longueur_50_Ohm_avant_courbe_2"] = "(ecartement_ports/2-(rayon_jonction+longueur_adaptation_2)*sin(60deg)-rayon_courbure_2*(1-cos(60deg)))/sin(60deg)"
+Circulateur["longueur_50_Ohm_avant_courbe_3"] = "(ecartement_ports/2-(rayon_jonction+longueur_adaptation_3)*sin(60deg)-rayon_courbure_3*(1-cos(60deg)))/sin(60deg)"
 # Circulateur["longueur_50_Ohm_avant_courbe_2"] = "(-ecartement_ports-(rayon_jonction+longueur_adaptation_2)*sin(30deg)-rayon_courbure_2*(1-cos(30deg)))/sin(30deg)"
 # Circulateur["longueur_50_Ohm_avant_courbe_3"] = "(-ecartement_ports-(rayon_jonction+longueur_adaptation_3)*sin(30deg)-rayon_courbure_3*(1-cos(30deg)))/sin(30deg)"
-Circulateur["longueur_50_Ohm_2"] = "largeur_substrat/2-(rayon_jonction+longueur_adaptation_2+longueur_50_Ohm_avant_courbe_2)*cos(30deg)-rayon_courbure_2*sin(30deg)"
-Circulateur["longueur_50_Ohm_3"] = "largeur_substrat/2-(rayon_jonction+longueur_adaptation_3+longueur_50_Ohm_avant_courbe_3)*cos(30deg)-rayon_courbure_3*sin(30deg)"
+Circulateur["longueur_50_Ohm_2"] = "longueur_substrat_arriere-(rayon_jonction+longueur_adaptation_2+longueur_50_Ohm_avant_courbe_2)*cos(60deg)-rayon_courbure_2*sin(60deg)"
+Circulateur["longueur_50_Ohm_3"] = "longueur_substrat_arriere-(rayon_jonction+longueur_adaptation_3+longueur_50_Ohm_avant_courbe_3)*cos(60deg)-rayon_courbure_3*sin(60deg)"
     # Calcul de la dimension des ports
         # Equations from https://emtalk.com/waveport_calc.htm
 w = Circulateur.variable_manager.decompose("largeur_50_Ohm")[0]
@@ -251,56 +251,56 @@ Ferrite.dielectric_loss_tangent = "$ferrite_tand"
 
 # Création du plan de masse
 GND = Circulateur.modeler.create_box(origin = ["-longueur_substrat_arriere", "-largeur_substrat/2", "0mm"],
-                                       sizes = ["longueur_substrat","largeur_substrat","-epaisseur_metallisation"],
-                                       name = "GND",
-                                       material = "gold")
+                                     sizes = ["longueur_substrat","largeur_substrat","-epaisseur_metallisation"],
+                                     name = "GND",
+                                     material = "gold")
 GND.material_appearance = True
 
 # Création du substrat
 Substrat = Circulateur.modeler.create_box(origin = ["-longueur_substrat_arriere+largeur_taper", "-largeur_substrat/2+largeur_taper", "0mm"],
-                                       sizes = ["longueur_substrat-2*largeur_taper","largeur_substrat-2*largeur_taper","hauteur_substrat"],
-                                       name = "Ferrite",
-                                       material = "mon_ferrite")
+                                          sizes = ["longueur_substrat-2*largeur_taper","largeur_substrat-2*largeur_taper","hauteur_substrat"],
+                                          name = "Ferrite",
+                                          material = "mon_ferrite")
 Substrat.color = (64,64,64)
 
 # Création du Taper
 Taper = Circulateur.modeler.create_box(origin = ["-longueur_substrat_arriere", "-largeur_substrat/2", "0mm"],
-                                         sizes = ["longueur_substrat","largeur_substrat","hauteur_substrat"],
-                                         name = "Taper",
-                                         material = "mon_ferrite_taper")
+                                       sizes = ["longueur_substrat","largeur_substrat","hauteur_substrat"],
+                                       name = "Taper",
+                                       material = "mon_ferrite_taper")
 
 Circulateur.modeler.subtract(blank_list = "Taper",
-                               tool_list = "Ferrite",
-                               keep_originals = True)
+                             tool_list = "Ferrite",
+                             keep_originals = True)
 
 Taper.color = (160,160,160)
 
 # Métallisation supérieure
     # Création du résonateur
 Jonction = Circulateur.modeler.create_cylinder(orientation = 'Z',
-                                                 origin = [0, 0, "hauteur_substrat"],
-                                                 radius = "rayon_jonction",
-                                                 height = "epaisseur_metallisation",
-                                                 name = "Jonction",
-                                                 material = "gold")
+                                               origin = [0, 0, "hauteur_substrat"],
+                                               radius = "rayon_jonction",
+                                               height = "epaisseur_metallisation",
+                                               name = "Jonction",
+                                               material = "gold")
 
     # Création des lignes d'adaptation
 Ligne_adaptation_1 = Circulateur.modeler.create_box(origin = [0, "-largeur_adaptation_1/2", "hauteur_substrat"],
-                                                      sizes = ["rayon_jonction+longueur_adaptation_1","largeur_adaptation_1","epaisseur_metallisation"],
-                                                      name = "Ligne_adaptation_1",
-                                                      material = "gold")
+                                                    sizes = ["rayon_jonction+longueur_adaptation_1","largeur_adaptation_1","epaisseur_metallisation"],
+                                                    name = "Ligne_adaptation_1",
+                                                    material = "gold")
 
 Ligne_adaptation_2 = Circulateur.modeler.create_box(origin = [0, "-largeur_adaptation_2/2", "hauteur_substrat"],
-                                                      sizes = ["rayon_jonction+longueur_adaptation_2","largeur_adaptation_2","epaisseur_metallisation"],
-                                                      name = "Ligne_adaptation_2",
-                                                      material = "gold")
+                                                    sizes = ["rayon_jonction+longueur_adaptation_2","largeur_adaptation_2","epaisseur_metallisation"],
+                                                    name = "Ligne_adaptation_2",
+                                                    material = "gold")
 Ligne_adaptation_2.rotate(axis = 'Z',
                           angle = "120deg")
 
 Ligne_adaptation_3 = Circulateur.modeler.create_box(origin = [0, "-largeur_adaptation_3/2", "hauteur_substrat"],
-                                                      sizes = ["rayon_jonction+longueur_adaptation_3","largeur_adaptation_3","epaisseur_metallisation"],
-                                                      name = "Ligne_adaptation_3",
-                                                      material = "gold")
+                                                    sizes = ["rayon_jonction+longueur_adaptation_3","largeur_adaptation_3","epaisseur_metallisation"],
+                                                    name = "Ligne_adaptation_3",
+                                                    material = "gold")
 Ligne_adaptation_3.rotate(axis = 'Z',
                           angle = "240deg")
 
@@ -308,71 +308,71 @@ Ligne_adaptation_3.rotate(axis = 'Z',
         # Acces 1
             # Ligne simple
 Ligne_50_Ohm_1 = Circulateur.modeler.create_box(origin = ["rayon_jonction+longueur_adaptation_1", "-largeur_50_Ohm/2", "hauteur_substrat"],
-                                                  sizes = ["longueur_substrat_avant-rayon_jonction-longueur_adaptation_1","largeur_50_Ohm","epaisseur_metallisation"],
-                                                  name = "Ligne_50_Ohm_1",
-                                                  material = "gold")
+                                                sizes = ["longueur_substrat_avant-rayon_jonction-longueur_adaptation_1","largeur_50_Ohm","epaisseur_metallisation"],
+                                                name = "Ligne_50_Ohm_1",
+                                                material = "gold")
 
         # Acces 2 & 3
             # Lignes avant les courbes
 Ligne_50_Ohm_avant_courbe_2 = Circulateur.modeler.create_box(origin = ["rayon_jonction+longueur_adaptation_2", "-largeur_50_Ohm/2", "hauteur_substrat"],
-                                                               sizes = ["longueur_50_Ohm_avant_courbe_2","largeur_50_Ohm","epaisseur_metallisation"],
-                                                               name = "Ligne_50_Ohm_avant_courbe_2",
-                                                               material = "gold")
+                                                             sizes = ["longueur_50_Ohm_avant_courbe_2","largeur_50_Ohm","epaisseur_metallisation"],
+                                                             name = "Ligne_50_Ohm_avant_courbe_2",
+                                                             material = "gold")
 Ligne_50_Ohm_avant_courbe_2.rotate(axis = 'Z',
                                    angle = "120deg")
 
 Ligne_50_Ohm_avant_courbe_3 = Circulateur.modeler.create_box(origin = ["rayon_jonction+longueur_adaptation_3", "-largeur_50_Ohm/2", "hauteur_substrat"],
-                                                               sizes = ["longueur_50_Ohm_avant_courbe_3","largeur_50_Ohm","epaisseur_metallisation"],
-                                                               name = "Ligne_50_Ohm_avant_courbe_3",
-                                                               material = "gold")
+                                                             sizes = ["longueur_50_Ohm_avant_courbe_3","largeur_50_Ohm","epaisseur_metallisation"],
+                                                             name = "Ligne_50_Ohm_avant_courbe_3",
+                                                             material = "gold")
 Ligne_50_Ohm_avant_courbe_3.rotate(axis = 'Z',
                                    angle = "240deg")
 
             # Courbes
-Ligne_50_Ohm_Courbe_2 = Circulateur.modeler.create_equationbased_surface(x_uv = "rayon_courbure_2*cos(_v)-sin(30deg)*(rayon_jonction+longueur_adaptation_2+longueur_50_Ohm_avant_courbe_2)-cos(30deg)*rayon_courbure_2",
-                                                                            y_uv = "rayon_courbure_2*sin(_v)+cos(30deg)*(rayon_jonction+longueur_adaptation_2+longueur_50_Ohm_avant_courbe_2)-sin(30deg)*rayon_courbure_2",
-                                                                            z_uv = "_u",
-                                                                            u_start = "hauteur_substrat",
-                                                                            u_end = "hauteur_substrat+epaisseur_metallisation",
-                                                                            v_start = "30deg",
-                                                                            v_end = "60deg",
-                                                                            name = "Ligne_50_Ohm_Courbe_2")
+Ligne_50_Ohm_Courbe_2 = Circulateur.modeler.create_equationbased_surface(x_uv = "_u*cos(_v)-sin(30deg)*(rayon_jonction+longueur_adaptation_2+longueur_50_Ohm_avant_courbe_2)-cos(30deg)*rayon_courbure_2",
+                                                                         y_uv = "_u*sin(_v)+cos(30deg)*(rayon_jonction+longueur_adaptation_2+longueur_50_Ohm_avant_courbe_2)-sin(30deg)*rayon_courbure_2",
+                                                                         z_uv = "hauteur_substrat",
+                                                                         u_start = "rayon_courbure_2-largeur_50_Ohm/2",
+                                                                         u_end = "rayon_courbure_2+largeur_50_Ohm/2",
+                                                                         v_start = "30deg",
+                                                                         v_end = "90deg",
+                                                                         name = "Ligne_50_Ohm_Courbe_2")
 
 Circulateur.modeler.thicken_sheet(assignment = "Ligne_50_Ohm_Courbe_2",
-                                    thickness = "epaisseur_metallisation")
+                                  thickness = "epaisseur_metallisation")
 
 Ligne_50_Ohm_Courbe_2.material_name = "gold"
 
-Ligne_50_Ohm_Courbe_3 = Circulateur.modeler.create_equationbased_surface(x_uv = "rayon_courbure_3*cos(_v)-sin(30deg)*(rayon_jonction+longueur_adaptation_3+longueur_50_Ohm_avant_courbe_3)-cos(30deg)*rayon_courbure_3",
-                                                                            y_uv = "rayon_courbure_3*sin(_v)-cos(30deg)*(rayon_jonction+longueur_adaptation_3+longueur_50_Ohm_avant_courbe_3)+sin(30deg)*rayon_courbure_3",
-                                                                            z_uv = "_u",
-                                                                            u_start = "hauteur_substrat",
-                                                                            u_end = "hauteur_substrat+epaisseur_metallisation",
-                                                                            v_start = "270deg",
-                                                                            v_end = "330deg",
-                                                                            name = "Ligne_50_Ohm_Courbe_3")
+Ligne_50_Ohm_Courbe_3 = Circulateur.modeler.create_equationbased_surface(x_uv = "_u*cos(_v)-sin(30deg)*(rayon_jonction+longueur_adaptation_3+longueur_50_Ohm_avant_courbe_3)-cos(30deg)*rayon_courbure_3",
+                                                                         y_uv = "_u*sin(_v)-cos(30deg)*(rayon_jonction+longueur_adaptation_3+longueur_50_Ohm_avant_courbe_3)+sin(30deg)*rayon_courbure_3",
+                                                                         z_uv = "hauteur_substrat",
+                                                                         u_start = "rayon_courbure_2-largeur_50_Ohm/2",
+                                                                         u_end = "rayon_courbure_2+largeur_50_Ohm/2",
+                                                                         v_start = "270deg",
+                                                                         v_end = "330deg",
+                                                                         name = "Ligne_50_Ohm_Courbe_3")
 
 Circulateur.modeler.thicken_sheet(assignment = "Ligne_50_Ohm_Courbe_3",
-                                    thickness = "epaisseur_metallisation")
+                                  thickness = "epaisseur_metallisation")
 
 Ligne_50_Ohm_Courbe_3.material_name = "gold"
 
             # Lignes entre la courbe et le bord du substrat
-Ligne_50_Ohm_2 = Circulateur.modeler.create_box(origin = ["-longueur_arriere", "ecartement_ports/2-largeur_50_Ohm/2", "hauteur_substrat"],
-                                                  sizes = ["longueur_50_Ohm_2","largeur_50_Ohm","epaisseur_metallisation"],
-                                                  name = "Ligne_50_Ohm_2",
-                                                  material = "gold")
+Ligne_50_Ohm_2 = Circulateur.modeler.create_box(origin = ["-longueur_substrat_arriere", "ecartement_ports/2-largeur_50_Ohm/2", "hauteur_substrat"],
+                                                sizes = ["longueur_50_Ohm_2","largeur_50_Ohm","epaisseur_metallisation"],
+                                                name = "Ligne_50_Ohm_2",
+                                                material = "gold")
 
-Ligne_50_Ohm_3 = Circulateur.modeler.create_box(origin = ["-longueur_arriere", "-ecartement_ports/2-largeur_50_Ohm/2", "hauteur_substrat"],
-                                                  sizes = ["longueur_50_Ohm_3","largeur_50_Ohm","epaisseur_metallisation"],
-                                                  name = "Ligne_50_Ohm_3",
-                                                  material = "gold")
+Ligne_50_Ohm_3 = Circulateur.modeler.create_box(origin = ["-longueur_substrat_arriere", "-ecartement_ports/2-largeur_50_Ohm/2", "hauteur_substrat"],
+                                                sizes = ["longueur_50_Ohm_3","largeur_50_Ohm","epaisseur_metallisation"],
+                                                name = "Ligne_50_Ohm_3",
+                                                material = "gold")
 
     # Union des différents éléments
 Circulateur.modeler.unite(["Jonction",
-                             "Ligne_adaptation_1","Ligne_50_Ohm_1",
-                             "Ligne_adaptation_2","Ligne_50_Ohm_avant_courbe_2","Ligne_50_Ohm_Courbe_2","Ligne_50_Ohm_2",
-                             "Ligne_adaptation_3","Ligne_50_Ohm_avant_courbe_3","Ligne_50_Ohm_Courbe_3","Ligne_50_Ohm_3"])
+                           "Ligne_adaptation_1","Ligne_50_Ohm_1",
+                           "Ligne_adaptation_2","Ligne_50_Ohm_avant_courbe_2","Ligne_50_Ohm_Courbe_2","Ligne_50_Ohm_2",
+                           "Ligne_adaptation_3","Ligne_50_Ohm_avant_courbe_3","Ligne_50_Ohm_Courbe_3","Ligne_50_Ohm_3"])
 
 Jonction.material_appearance = True
 
@@ -382,30 +382,30 @@ Jonction.material_appearance = True
 
 # Ajout du port 1
 PEC_Port_1 = Circulateur.modeler.create_box(origin = ["longueur_substrat_avant", "-largeur_port/2", 0],
-                                              sizes = ["epaisseur_pec","largeur_port","hauteur_port"],
-                                              name = "PEC_Port_1",
-                                              material = "pec")
+                                            sizes = ["epaisseur_pec","largeur_port","hauteur_port"],
+                                            name = "PEC_Port_1",
+                                            material = "pec")
 
 Circulateur.wave_port(PEC_Port_1.bottom_face_x,
-                        name = "1")
+                      name = "1")
 
 # Ajout du port 2
-PEC_Port_2 = Circulateur.modeler.create_box(origin = ["-longueur_arriere", "ecartement_ports/2-largeur_port/2", 0],
-                                              sizes = ["largeur_port","epaisseur_pec","hauteur_port"],
-                                              name = "PEC_Port_2",
-                                              material = "pec")
+PEC_Port_2 = Circulateur.modeler.create_box(origin = ["-longueur_substrat_arriere", "ecartement_ports/2-largeur_port/2", 0],
+                                            sizes = ["epaisseur_pec","largeur_port","hauteur_port"],
+                                            name = "PEC_Port_2",
+                                            material = "pec")
 
 Circulateur.wave_port(PEC_Port_2.bottom_face_y,
-                        name = "2")
+                      name = "2")
 
 # Ajout du port 3
-PEC_Port_3 = Circulateur.modeler.create_box(origin = ["-longueur_arriere", "-ecartement_ports/2-largeur_port/2", 0],
-                                              sizes = ["largeur_port","-epaisseur_pec","hauteur_port"],
-                                              name = "PEC_Port_3",
-                                              material = "pec")
+PEC_Port_3 = Circulateur.modeler.create_box(origin = ["-longueur_substrat_arriere", "-ecartement_ports/2-largeur_port/2", 0],
+                                            sizes = ["epaisseur_pec","largeur_port","hauteur_port"],
+                                            name = "PEC_Port_3",
+                                            material = "pec")
 
 Circulateur.wave_port(PEC_Port_3.top_face_y,
-                        name = "3")
+                      name = "3")
 
 # Couleur des ports
 PEC_Port_1.color = (255,0,255)
@@ -447,8 +447,8 @@ Setup.properties["Percent Refinement"] = percent_refinement
 ###################
 
 plot_tous_les_ports = Circulateur.post.create_report(expressions = ["dB(S(1,1))", "dB(S(2,1))", "dB(S(3,1))",
-                                                                      "dB(S(2,2))", "dB(S(3,2))", "dB(S(1,2))",
-                                                                      "dB(S(3,3))", "dB(S(1,3))", "dB(S(2,3))"])
+                                                                    "dB(S(2,2))", "dB(S(3,2))", "dB(S(1,2))",
+                                                                    "dB(S(3,3))", "dB(S(1,3))", "dB(S(2,3))"])
 plot_tous_les_ports.plot_name = "Tous les ports"
 plot_tous_les_ports.hide_legend(solution_name = False,
                                 trace_name = True,
